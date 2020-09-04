@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {StylesProvider} from '@material-ui/core/styles';
+import {ThemeProvider} from 'styled-components';
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {GlobalStyle, theme} from './theme';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <ThemeProvider theme={theme}>
+            <StylesProvider injectFirst>
+                <App />
+                <GlobalStyle />
+            </StylesProvider>
+        </ThemeProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
