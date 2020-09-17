@@ -36,7 +36,7 @@ export const VirtualizedList = ({items, itemRenderer, rowHeight, triggerRef, off
         }
     };
 
-    const debouncedCalculateListHeight = debounce(calculateListHeight, 30);
+    // const debouncedCalculateListHeight = debounce(calculateListHeight, 30);
 
     const enhanceItemRenderer = (args) => {
         return itemRenderer({...args, data: items[args.index]});
@@ -44,16 +44,18 @@ export const VirtualizedList = ({items, itemRenderer, rowHeight, triggerRef, off
 
     useEffect(() => {
         calculateListHeight();
-        window.addEventListener('resize', debouncedCalculateListHeight, true);
-        window.addEventListener('scroll', debouncedCalculateListHeight, true);
+        window.addEventListener('resize', calculateListHeight, true);
+        window.addEventListener('scroll', calculateListHeight, true);
 
         return () => {
-            window.removeEventListener('resize', debouncedCalculateListHeight, true);
-            window.removeEventListener('scroll', debouncedCalculateListHeight, true);
+            window.removeEventListener('resize', calculateListHeight, true);
+            window.removeEventListener('scroll', calculateListHeight, true);
         };
     }, []);
 
     // todo remove the focus : ReactVirtualized__Grid ReactVirtualized__List
+
+    console.log(calculatedHeight);
 
     return (
         <ListWrapper height={calculatedHeight}>

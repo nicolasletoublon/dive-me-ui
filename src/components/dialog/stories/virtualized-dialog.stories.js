@@ -80,7 +80,7 @@ export const ListExample = (props) => {
                     canFlip={props.canFlip}
                 >
                     <DialogHeader>The dialog gives you the shadows and the background from the theme.</DialogHeader>
-                    <DialogContent px={0} id="myDiv">
+                    <DialogContent px={0}>
                         <VirtualizedList
                             placement={props.placement}
                             offsets={137}
